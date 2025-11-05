@@ -1,0 +1,102 @@
+
+/* #ffcd9d  cor de fundo  */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #ffcd9d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#container {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+}
+
+
+#logo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 4px solid #4a2c2a;
+  cursor: pointer;
+  transition: transform 0.3s;
+  object-fit: cover;
+}
+#logo:hover {
+  transform: scale(1.1);
+}
+
+/* Mascote agora ocupa um espaço fixo acima do formulário */
+#mascote {
+  display: none;
+  margin-top: 20px;
+  position: relative; /* não mais absolute */
+  height: 150px;      /* reserva espaço fixo */
+}
+
+
+#mascoteImg {
+  width: 100px;
+  position: relative;
+}
+
+/* Balões ficam logo abaixo do mascote */
+#chatBox {
+  margin-top: 10px;
+}
+
+
+.chat {
+  background: white;
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin: 10px auto;
+  width: 250px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  font-size: 14px;
+}
+
+#loginForm {
+  display: none;
+  margin-top: 20px;
+}
+
+input {
+  display: block;
+  margin: 10px auto;
+  padding: 8px;
+  width: 200px;
+}
+
+#mainSite {
+  display: none;
+  font-size: 20px;
+}
+
+/* Animação do mascote saindo da logo e andando */
+@keyframes sairDaLogo {
+  0% { transform: translate(-50%, 0) scale(0); opacity: 0; }
+  30% { transform: translate(-50%, 0) scale(1); opacity: 1; }
+  100% { transform: translate(50px, 0) scale(1); opacity: 1; }
+}
+
+.andando {
+  animation: sairDaLogo 3s forwards;
+}
+
+/* Animação de saída (voltar para a logo) */
+@keyframes voltarParaLogo {
+  0% { transform: translate(50px, 0) scale(1); opacity: 1; }
+  100% { transform: translate(0, -50px) scale(0); opacity: 0; }
+}
+
+.voltando {
+  animation: voltarParaLogo 2s forwards;
+}
