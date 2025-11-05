@@ -7,20 +7,33 @@
 </head>
 <body>
   <div id="container">
-    <!-- Logo -->
+
+    <!-- ===============================
+         ETAPA 1 – Logo + Balão inicial
+         =============================== -->
     <img id="logo" 
          src="https://copilot.microsoft.com/th/id/BCO.2d7ff8ac-aedc-44f6-abbf-d846c4fe51b1.png" 
          alt="Logo do Grupo - Esquillions">
 
-    <!-- Mascote -->
+    <!-- Balão de instrução da logo -->
+    <div id="logoHint"></div>
+
+    <!-- ===============================
+         ETAPA 2 – Mascote ativo
+         =============================== -->
     <div id="mascote">
-      <img id="mascoteImg" 
-           src="https://copilot.microsoft.com/th/id/BCO.fba92fd3-37da-4e38-8918-893a82120bb6.png" 
-           alt="Mascote Esquilo Empresário Pixel Art">
+      <div class="avatar">
+        <img id="mascoteImg" 
+             src="https://copilot.microsoft.com/th/id/BCO.fba92fd3-37da-4e38-8918-893a82120bb6.png" 
+             alt="Mascote Esquilo Empresário Pixel Art">
+      </div>
+      <!-- Balão de fala do mascote -->
       <div id="chatBox"></div>
     </div>
 
-    <!-- Formulário de login -->
+    <!-- ===============================
+         ETAPA 3 – Formulário de login
+         =============================== -->
     <form id="loginForm">
       <input type="text" id="nome" placeholder="Nome">
       <input type="password" id="senha" placeholder="Senha">
@@ -30,12 +43,16 @@
       <button type="button" id="btnLogin">Entrar</button>
     </form>
 
-    <!-- Conteúdo principal -->
+    <!-- ===============================
+         ETAPA 3 – Conteúdo principal
+         =============================== -->
     <div id="mainSite">
       <p>Bem-vindo ao site principal! (conteúdo placeholder)</p>
     </div>
+
   </div>
 
+  <!-- Script principal -->
   <script src="script.js"></script>
 </body>
 </html>
