@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Projeto Mascote Interativo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="container">
+
+    <!-- ===============================
+         ETAPA 1 – Logo + Balão inicial
+         =============================== -->
+    <img id="logo" 
+         src="logo.png" 
+         alt="Logo do Grupo - Esquillions">
+
+    <!-- Balão de instrução da logo -->
+    <div id="logoHint">Clique na logo para iniciar!</div>
+<div id="avelã"></div>
+
+
+    <!-- ===============================
+         ETAPA 2 – Mascote ativo
+         =============================== -->
+    <div id="mascote">
+      <div class="avatar">
+        <img id="mascoteImg" 
+             src="mascote.png" 
+             alt="Mascote Esquilo Empresário Pixel Art">
+      </div>
+      <!-- Container para múltiplos balões -->
+      <div id="chatContainer"></div>
+    </div>
+
+    <!-- ===============================
+         ETAPA 3 – Formulário de login
+         =============================== -->
+    <form id="loginForm">
+      <input type="text" id="nome" placeholder="Nome">
+      <input type="password" id="senha" placeholder="Senha">
+      <label>
+        <input type="checkbox" id="toggleSenha"> Ocultar senha
+      </label>
+      <button type="button" id="btnLogin">Entrar</button>
+    </form>
+
+    <!-- ===============================
+         ETAPA 3 – Conteúdo principal
+         =============================== -->
+    <div id="mainSite">
+      <p>Bem-vindo ao site principal! (conteúdo placeholder)</p>
+    </div>
+
+  </div>
+
+  <!-- Script principal -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+/* ===============================
+   ETAPA 0 – Configuração base
+   =============================== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #ffcd9d; /* cor de fundo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#container {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+}
+
+#mainSite {
+  display: none; /* só aparece depois do login */
+  font-size: 20px;
+}
+
+/* ===============================
+   ETAPA 1 – Logo + Balão inicial
+   =============================== */
+#logo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 4px solid #4a2c2a;
+  cursor: pointer;
+  transition: transform 0.3s;
+  object-fit: cover;
+}
+#logo:hover {
+  transform: scale(1.1);
+}
+
+/* Balão inicial da logo */
+#logoHint {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff7a00;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  font-size: 14px;
+  display: block;
+  animation: fadeIn 1s ease-in-out;
+  white-space: nowrap;
+}
+
+/* Triângulo do balão */
+#logoHint::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: #ff7a00 transparent transparent transparent;
+}
+
+/* Avelã que cai */
+#avela {
+  position: absolute;
+  top: -100px; /* começa fora da tela */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background: #6b3e26;
+  border-radius: 50%;
+  animation: dropNut 2s ease-in-out forwards;
+}
+
+/* Animação da queda da avelã */
+@keyframes dropNut {
+  0% { top: -100px; opacity: 0; }
+  50% { opacity: 1; }
+  100% { top: -40px; } /* posição do balão */
+}
+
+/* Animação de impacto no balão */
+@keyframes nutImpact {
+  0%   { transform: translateX(-50%) rotate(0deg); }
+  25%  { transform: translateX(-50%) rotate(-5deg); }
+  50%  { transform: translateX(-50%) rotate(5deg); }
+  75%  { transform: translateX(-50%) rotate(-3deg); }
+  100% { transform: translateX(-50%) rotate(0deg); }
+}
+
+/* Classe aplicada via JS quando a avelã bate */
+#logoHint.hit {
+  animation: nutImpact 0.6s ease-in-out;
+}
+
+/* Animação de chacoalhar */
+@keyframes shake {
+  0%, 100% { transform: translate(-50%, 0); }
+  20% { transform: translate(calc(-50% - 5px), 0); }
+  40% { transform: translate(calc(-50% + 5px), 0); }
+  60% { transform: translate(calc(-50% - 5px), 0); }
+  80% { transform: translate(calc(-50% + 5px), 0); }
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out 3; /* 3 repetições */
+}
+
+/* ===============================
+   ETAPA 2 – Mascote ativo
+   =============================== */
+#mascote {
+  display: none; /* começa invisível */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  align-items: center;
+  flex-direction: row-reverse;
+  gap: 10px;
+  z-index: 1000;
+}
+
+/* Quando fixo no canto */
+#mascote.fixo {
+  display: flex;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  top: auto;
+  left: auto;
+  transform: translate(0,0) scale(1);
+  animation: bounce 2s infinite;
+}
+
+/* Animação de bounce (quicar no canto) */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Animação de saída da logo */
+@keyframes sairDaLogo {
+  0%   { transform: translate(-50%, 0%) scale(0); opacity: 0; }
+  30%  { transform: translate(-50%, -20%) scale(1); opacity: 1; }
+  100% { transform: translate(calc(50vw - 100%), calc(50vh - 100%)) scale(1); opacity: 1; }
+}
+.andando {
+  animation: sairDaLogo 2s forwards;
+}
+
+/* Animação de retorno para a logo */
+@keyframes voltarParaLogo {
+  0%   { transform: translate(calc(50vw - 100%), calc(50vh - 100%)) scale(1); opacity: 1; }
+  70%  { transform: translate(-50%, -20%) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, 0%) scale(0); opacity: 0; }
+}
+.voltando {
+  animation: voltarParaLogo 2s forwards;
+}
+
+/* ===============================
+   ETAPA 3 – Avatar + Balão de fala
+   =============================== */
+.avatar {
+  width: 60px;
+  height: 60px;
+  background: var(--secondary, #4a2c2a);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Container de mensagens */
+#chatContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Cada balão de fala */
+.chatBox {
+  background: var(--primary, #ff7a00);
+  color: white;
+  padding: 0.8rem;
+  border-radius: 10px;
+  max-width: 200px;
+  font-size: 14px;
+  animation: fadeIn 0.5s ease-in-out;
+  position: relative;
+  margin-top: 5px; /* espaço entre mensagens */
+}
+
+/* Triângulo do balão apontando para o avatar */
+.chatBox::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  transform: translateY(-50%);
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--primary, #ff7a00);
+}
+
+/* Balão desaparecendo */
+.chatBox.fadeOut {
+  animation: fadeOut 0.5s forwards;
+}
+
+/* ===============================
+   Animações de entrada e saída
+   =============================== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-10px); }
+}
